@@ -3,11 +3,19 @@ package main;
 import config.ProjectConfig;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import java.util.Arrays;
+
 public class Main {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context =
                 new AnnotationConfigApplicationContext(ProjectConfig.class);
-        Object parrot = context.getBean("parrot");
-        System.out.println(((Parrot) parrot).getName());
+        Parrot p = context.getBean(Parrot.class);
+        System.out.println(p.getName());
+
+        String s = context.getBean(String.class);
+        System.out.println(s);
+
+        Integer n = context.getBean(Integer.class);
+        System.out.println(n);
     }
 }
