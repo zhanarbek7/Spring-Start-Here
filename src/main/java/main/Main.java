@@ -11,17 +11,15 @@ public class Main {
         AnnotationConfigApplicationContext context =
                 new AnnotationConfigApplicationContext(ProjectConfig.class);
 
-        Parrot parrot1 = new Parrot();
-        parrot1.setName("Kiki");
+        Person person = context.getBean(Person.class);
+        Parrot parrot = context.getBean(Parrot.class);
 
+        System.out.println(person.getName());
+        System.out.println(parrot.getName());
 
-        Supplier<Parrot> parrotSupplier1 = () -> parrot1;
+        System.out.println(person.getParrot());
 
-        context.registerBean("parrot",Parrot.class, parrotSupplier1,
-                bc -> bc.setPrimary(true));
-
-        Parrot p = context.getBean(Parrot.class);
-        System.out.println(p.getName());
+        context.close();
 
     }
 }
