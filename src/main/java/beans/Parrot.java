@@ -1,15 +1,10 @@
-package main;
+package beans;
 
-import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Component;
-
+@Component
 public class Parrot {
 
-    public Parrot() {
-        System.out.println("Parrot created");
-    }
-
-    private String name;
+    private String name = "Koko";
 
     public String getName() {
         return name;
