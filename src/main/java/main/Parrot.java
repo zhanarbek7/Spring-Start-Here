@@ -5,6 +5,10 @@ import org.springframework.stereotype.Component;
 
 public class Parrot {
 
+    public Parrot() {
+        System.out.println("Parrot created");
+    }
+
     private String name;
 
     public String getName() {
