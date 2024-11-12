@@ -1,24 +1,20 @@
 package main;
 
-import config.ProjectConfig;
-import beans.Person;
+
+import configuration.ProjectConfiguration;
+import models.Comment;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import services.CommentService;
 
 public class Main {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context =
-                new AnnotationConfigApplicationContext(ProjectConfig.class);
+                new AnnotationConfigApplicationContext(ProjectConfiguration.class);
+        Comment comment = new Comment();
+        comment.setAuthor("John");
+        comment.setText("Hello world!");
 
-//        for (String beanDefinitionName : context.getBeanDefinitionNames()) {
-//            System.out.println(beanDefinitionName);
-//        }
-//        System.out.println();
-
-        Person person = context.getBean(Person.class);
-        System.out.println(person.getName());
-        System.out.println(person.getParrot());
-
-        context.close();
-
+        CommentService commentService = context.getBean(CommentService.class);
+        commentService.publishComment(comment);
     }
 }
