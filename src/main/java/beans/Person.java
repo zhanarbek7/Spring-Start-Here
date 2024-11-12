@@ -1,13 +1,17 @@
 package beans;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
 public class Person {
     private String name = "Ella";
-    private Parrot parrot;
+    private final Parrot parrot;
 
+    public Person(@Qualifier("parrot2") Parrot parrot2) {
+        this.parrot = parrot2;
+    }
 
     public String getName() {
         return name;
@@ -19,9 +23,5 @@ public class Person {
 
     public Parrot getParrot() {
         return parrot;
-    }
-
-    public void setParrot(Parrot parrot) {
-        this.parrot = parrot;
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import beans.Parrot;
 
 @Configuration
+@ComponentScan(basePackages = "beans")
 public class ProjectConfig {
 
     @Bean
@@ -22,14 +23,6 @@ public class ProjectConfig {
         Parrot parrot = new Parrot();
         parrot.setName("Miki");
         return parrot;
-    }
-
-    @Bean
-    public Person person(@Qualifier("parrot1") Parrot parrot) {
-        Person person = new Person();
-        person.setName("Ella");
-        person.setParrot(parrot);
-        return person;
     }
 
 }
