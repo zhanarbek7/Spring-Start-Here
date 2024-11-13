@@ -18,10 +18,6 @@ public class CommentService {
         this.commentRepository = commentRepository;
         this.commentNotificationProxy = commentNotificationProxy;
     }
-
-    private final CommentRepository commentRepository;
-    private final CommentNotificationProxy commentNotificationProxy;
-  
   
     public void publishComment(Comment comment) {
         commentRepository.storeComment(comment);
