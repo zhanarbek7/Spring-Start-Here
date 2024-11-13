@@ -12,7 +12,7 @@ public class CommentService {
     private final CommentNotificationProxy commentNotificationProxy;
 
 
-    public CommentService(CommentRepository commentRepository, @Qualifier("commentPushNotificationProxy") CommentNotificationProxy commentNotificationProxy) {
+    public CommentService(CommentRepository commentRepository, @Qualifier("PUSH") CommentNotificationProxy commentNotificationProxy) {
         this.commentRepository = commentRepository;
         this.commentNotificationProxy = commentNotificationProxy;
     }
