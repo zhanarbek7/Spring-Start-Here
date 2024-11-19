@@ -9,6 +9,10 @@ public class Main {
         AnnotationConfigApplicationContext context =
                 new AnnotationConfigApplicationContext(ProjectConfig.class);
 
-//        context.getBean(CommentService.class);
+        CommentService commentService1 = context.getBean(CommentService.class);
+        CommentService commentService2 = context.getBean(CommentService.class);
+        System.out.println(commentService1 == commentService2);
+
+
     }
 }
