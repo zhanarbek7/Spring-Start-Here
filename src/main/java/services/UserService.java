@@ -1,12 +1,11 @@
 package services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import repositories.CommentRepository;
 
 @Service
-public class CommentService {
+public class UserService {
     @Autowired
     private CommentRepository commentRepository;
 
