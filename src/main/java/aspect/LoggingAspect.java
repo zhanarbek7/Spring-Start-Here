@@ -14,24 +14,41 @@ import java.util.logging.Logger;
 public class LoggingAspect {
     private Logger logger = Logger.getLogger(CommentService.class.getName());
 
-    @Around("execution(* service.*.*(..))")
-    public Object log(ProceedingJoinPoint joinPoint){
+    // Aspect Log from previous examples
+//    @Around("execution(* service.*.*(..))")
+//    public Object log(ProceedingJoinPoint joinPoint){
+//        String methodName = joinPoint.getSignature().getName();
+//        Object[] arguments = joinPoint.getArgs();
+//        Object returnedByMethod = null;
+//        logger.info("Method " + methodName +
+//                " with parameters " + Arrays.asList(arguments) +
+//                " will execute");
+//        try {
+//            Comment comment = new Comment();
+//            comment.setText("Some other text!");
+//            Object[] newArguments = new Object[]{comment};
+//            returnedByMethod = joinPoint.proceed(newArguments);
+//        }
+//        catch (Throwable e) {
+//            logger.log(Level.INFO, "Error publishing comment", e);
+//        }
+//        logger.info("Method executed and returned " + returnedByMethod);
+//        return  "FAILED";
+//    }
+
+    @Around("@annotation(ToLog)")
+    public Object log(ProceedingJoinPoint joinPoint) throws Throwable {
         String methodName = joinPoint.getSignature().getName();
-        Object[] arguments = joinPoint.getArgs();
-        Object returnedByMethod = null;
+        Object [] arguments = joinPoint.getArgs();
+
         logger.info("Method " + methodName +
                 " with parameters " + Arrays.asList(arguments) +
                 " will execute");
-        try {
-            Comment comment = new Comment();
-            comment.setText("Some other text!");
-            Object[] newArguments = new Object[]{comment};
-            returnedByMethod = joinPoint.proceed(newArguments);
-        }
-        catch (Throwable e) {
-            logger.log(Level.INFO, "Error publishing comment", e);
-        }
+
+        Object returnedByMethod = joinPoint.proceed();
+
         logger.info("Method executed and returned " + returnedByMethod);
-        return  "FAILED";
+
+        return returnedByMethod;
     }
 }
