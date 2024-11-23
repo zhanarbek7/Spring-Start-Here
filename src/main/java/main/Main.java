@@ -8,20 +8,19 @@ import service.CommentService;
 import java.util.logging.Logger;
 
 public class Main {
-    private static Logger logger = Logger.getLogger(Main.class.getName());
-
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context =
                 new AnnotationConfigApplicationContext(ProjectConfig.class);
         // Retrieved a bean from the Spring context
         CommentService service = context.getBean(CommentService.class);
-        // Creating a comment instance
+
         Comment comment = new Comment();
-        comment.setText("Demo content");
+        comment.setText("Demo comment");
         comment.setAuthor("Natasha");
 
-        String value = service.publishComment(comment);
-        logger.info("Returned value in the main method: " + value);
+        service.publishComment(comment);
+        service.deleteComment(comment);
+        service.editComment(comment);
     }
 
 
