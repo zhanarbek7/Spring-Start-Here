@@ -21,7 +21,7 @@ public class Main {
         comment.setAuthor("Natasha");
 
         String value = service.publishComment(comment);
-        logger.info(value);
+        logger.info("Returned value in the main method: " + value);
     }
 
 

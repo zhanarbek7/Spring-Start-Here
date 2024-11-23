@@ -12,7 +12,7 @@ public class CommentService {
     private Logger logger = Logger.getLogger(CommentService.class.getName());
 
     public String publishComment(Comment comment) {
-        logger.log(Level.WARNING, "Publishing comment: " + comment.getText());
+        logger.log(Level.WARNING, "Publishing comment: " + comment.getText() + " Author: " + comment.getAuthor());
         return "SUCCESS";
     }
 }
