@@ -2,7 +2,6 @@ package aspect;
 
 import models.Comment;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import service.CommentService;
@@ -23,9 +22,5 @@ public class LoggingAspect {
         logger.info("Logging Aspect: Method executed and returned " +
                 returnedValue);
         return returnedValue;
-    }
-
-    public void setLogger(Logger logger) {
-        this.logger = logger;
     }
 }
