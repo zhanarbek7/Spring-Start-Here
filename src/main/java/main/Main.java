@@ -18,9 +18,7 @@ public class Main {
         comment.setText("Demo comment");
         comment.setAuthor("Natasha");
 
-        service.publishComment(comment);
-        service.deleteComment(comment);
-        service.editComment(comment);
+        String valueReturned = service.publishComment(comment);
     }
 
 
