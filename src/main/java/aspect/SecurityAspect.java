@@ -1,12 +1,16 @@
 package aspect;
 
+import models.Comment;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.springframework.core.annotation.Order;
 
+import java.util.Arrays;
 import java.util.logging.Logger;
 
 @Aspect
+@Order(1)
 public class SecurityAspect {
     private Logger logger = Logger.getLogger(SecurityAspect.class.getName());
 
