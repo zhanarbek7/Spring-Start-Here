@@ -2,6 +2,7 @@ package aspect;
 
 import models.Comment;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import service.CommentService;
@@ -14,41 +15,12 @@ import java.util.logging.Logger;
 public class LoggingAspect {
     private Logger logger = Logger.getLogger(CommentService.class.getName());
 
-    // Aspect Log from previous examples
-//    @Around("execution(* service.*.*(..))")
-//    public Object log(ProceedingJoinPoint joinPoint){
-//        String methodName = joinPoint.getSignature().getName();
-//        Object[] arguments = joinPoint.getArgs();
-//        Object returnedByMethod = null;
-//        logger.info("Method " + methodName +
-//                " with parameters " + Arrays.asList(arguments) +
-//                " will execute");
-//        try {
-//            Comment comment = new Comment();
-//            comment.setText("Some other text!");
-//            Object[] newArguments = new Object[]{comment};
-//            returnedByMethod = joinPoint.proceed(newArguments);
-//        }
-//        catch (Throwable e) {
-//            logger.log(Level.INFO, "Error publishing comment", e);
-//        }
-//        logger.info("Method executed and returned " + returnedByMethod);
-//        return  "FAILED";
-//    }
+    @AfterReturning(value = "@annotation(ToLog)", returning = "returnedValue")
+    public void log(Object returnedValue) {
+        logger.info("Method executed and returned " + returnedValue);
+    }
 
-    @Around("@annotation(ToLog)")
-    public Object log(ProceedingJoinPoint joinPoint) throws Throwable {
-        String methodName = joinPoint.getSignature().getName();
-        Object [] arguments = joinPoint.getArgs();
-
-        logger.info("Method " + methodName +
-                " with parameters " + Arrays.asList(arguments) +
-                " will execute");
-
-        Object returnedByMethod = joinPoint.proceed();
-
-        logger.info("Method executed and returned " + returnedByMethod);
-
-        return returnedByMethod;
+    public void setLogger(Logger logger) {
+        this.logger = logger;
     }
 }
